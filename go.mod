@@ -1,4 +1,4 @@
-module helpers
+module github.com/pedroegerland/helpers
 
 go 1.23.2
 
