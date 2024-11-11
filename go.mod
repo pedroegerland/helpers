@@ -3,6 +3,7 @@ module github.com/pedroegerland/helpers
 go 1.23.2
 
 require (
+	github.com/ghodss/yaml v1.0.0
 	github.com/labstack/echo/v4 v4.12.0
 	go.uber.org/fx v1.23.0
 	go.uber.org/zap v1.27.0
@@ -20,4 +21,5 @@ require (
 	golang.org/x/net v0.24.0 // indirect
 	golang.org/x/sys v0.19.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
