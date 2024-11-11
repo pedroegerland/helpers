@@ -1,4 +1,4 @@
-// Package echoswagger: This package provides a middleware for Echo that serves the Swagger UI. It is a wrapper around the swaggo/echo-swagger package.
+// Package echoswagger: This package provides a middleware for Echo that serves the Swagger UI. It is a wrapper around the swaggo/echo-echo-swagger package.
 // This is code was copied from  https://github.com/swaggo/echo-swagger/blob/master/swagger.go
 package echoswagger
 
@@ -17,7 +17,7 @@ import (
 
 // Config stores echoSwagger configuration variables.
 type Config struct {
-	// The url pointing to API definition (normally swagger.json or swagger.yaml). Default is `mockedSwag.json`.
+	// The url pointing to API definition (normally echo-swagger.json or echo-swagger.yaml). Default is `mockedSwag.json`.
 	URLs                 []string
 	DocExpansion         string
 	DomID                string
@@ -44,25 +44,25 @@ type OAuthConfig struct {
 }
 
 // Name is a unique name be used to register swag instance.
-const Name = "swagger"
+const Name = "echo-swagger"
 
 var (
 	swaggerMu sync.RWMutex
 	swags     map[string]Swagger
 )
 
-// Swagger is an interface to read swagger document.
+// Swagger is an interface to read echo-swagger document.
 type Swagger interface {
 	ReadDoc() string
 }
 
-// Register registers swagger for given name.
+// Register registers echo-swagger for given name.
 func Register(name string, swagger Swagger) {
 	swaggerMu.Lock()
 	defer swaggerMu.Unlock()
 
 	if swagger == nil {
-		panic("swagger is nil")
+		panic("echo-swagger is nil")
 	}
 
 	if swags == nil {
@@ -76,7 +76,7 @@ func Register(name string, swagger Swagger) {
 	swags[name] = swagger
 }
 
-// GetSwagger returns the swagger instance for given name.
+// GetSwagger returns the echo-swagger instance for given name.
 // If not found, returns nil.
 func GetSwagger(name string) Swagger {
 	swaggerMu.RLock()
@@ -85,8 +85,8 @@ func GetSwagger(name string) Swagger {
 	return swags[name]
 }
 
-// ReadDoc reads swagger document. An optional name parameter can be passed to read a specific document.
-// The default name is "swagger".
+// ReadDoc reads echo-swagger document. An optional name parameter can be passed to read a specific document.
+// The default name is "echo-swagger".
 func ReadDoc(optionalName ...string) (string, error) {
 	swaggerMu.RLock()
 	defer swaggerMu.RUnlock()
@@ -108,7 +108,7 @@ func ReadDoc(optionalName ...string) (string, error) {
 	return swag.ReadDoc(), nil
 }
 
-// URL presents the url pointing to API definition (normally swagger.json or swagger.yaml).
+// URL presents the url pointing to API definition (normally echo-swagger.json or echo-swagger.yaml).
 func URL(url string) func(*Config) {
 	return func(c *Config) {
 		c.URLs = append(c.URLs, url)
@@ -136,7 +136,7 @@ func DocExpansion(docExpansion string) func(*Config) {
 	}
 }
 
-// DomID #swagger-ui.
+// DomID #echo-swagger-ui.
 func DomID(domID string) func(*Config) {
 	return func(c *Config) {
 		c.DomID = domID
@@ -168,8 +168,8 @@ func newConfig(configFns ...func(*Config)) *Config {
 	config := Config{
 		URLs:                 []string{"doc.json", "doc.yaml"},
 		DocExpansion:         "list",
-		DomID:                "swagger-ui",
-		InstanceName:         "swagger",
+		DomID:                "echo-swagger-ui",
+		InstanceName:         "echo-swagger",
 		DeepLinking:          true,
 		PersistAuthorization: false,
 		SyntaxHighlight:      true,
@@ -270,7 +270,7 @@ const indexTemplate = `<!-- HTML for static distribution bundle build -->
 <head>
   <meta charset="UTF-8">
   <title>Swagger UI</title>
-  <link rel="stylesheet" type="text/css" href="./swagger-ui.css" >
+  <link rel="stylesheet" type="text/css" href="./echo-swagger-ui.css" >
   <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
   <style>
@@ -332,8 +332,8 @@ const indexTemplate = `<!-- HTML for static distribution bundle build -->
 
 <div id="{{.DomID}}"></div>
 
-<script src="./swagger-ui-bundle.js"> </script>
-<script src="./swagger-ui-standalone-preset.js"> </script>
+<script src="./echo-swagger-ui-bundle.js"> </script>
+<script src="./echo-swagger-ui-standalone-preset.js"> </script>
 <script>
 window.onload = function() {
   // Build a system
