@@ -9,7 +9,7 @@ var (
 	//go:embed dist/*
 	dist embed.FS
 
-	// FS holds embedded swagger ui files.
+	// FS holds embedded echo-swagger ui files.
 	FS fs.FS
 )
 
