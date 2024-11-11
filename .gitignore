@@ -1,0 +1,38 @@
+### Example user template
+
+# IntelliJ project files
+../.idea
+.idea
+*.iml
+out
+*server.out
+*query.out
+*command.out
+.terraform*
+.DS_Store
+
+### Go template
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+*coverage*
+*report.xml
+
+# Dependency directories (remove the comment below to include it)
+vendor/
+
+# Others
+generated
+__debug_bin
+__debug_bin*
+gl-code-quality-report.json
+*.env
